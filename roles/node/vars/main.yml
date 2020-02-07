@@ -1,0 +1,30 @@
+---
+
+### --------------------------------------------------------------------------
+### Username of the inital Splunk administrator
+
+#splunk_administrator_user:
+
+### --------------------------------------------------------------------------
+### Install Splunk administrator with a hash or a plain text password
+### yes -> use hash (splunk_administrator_hash)
+### no  -> use plain text password (splunk_administrator_pass)
+
+#splunk_secure_setup: no
+
+### --------------------------------------------------------------------------
+### Hash of the password for the inital Splunk administrator
+### Generate your hash with the command "splunk hash-passwd <your password>"
+
+#splunk_administrator_hash:
+
+### --------------------------------------------------------------------------
+### Plain text password for the inital Splunk administrator
+
+#splunk_administrator_pass:
+
+### --------------------------------------------------------------------------
+### URI of the Splunk deployment server
+
+#splunk_deployment_server_domain:
+#splunk_deployment_server_port:

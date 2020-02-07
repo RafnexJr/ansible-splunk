@@ -1,0 +1,7 @@
+{{ "Ansible Managed File" | comment }}
+
+[ deployment-client ]
+disabled = false
+
+[target-broker:deploymentServer]
+targetUri = {{ splunk_deployment_server_domain }}:{{ splunk_deployment_server_port }}

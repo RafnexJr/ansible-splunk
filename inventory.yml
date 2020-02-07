@@ -1,0 +1,19 @@
+---
+all:
+  children:
+    splunk_nodes:
+      children:
+        forwarder:
+          hosts:
+            forwarder01:
+          vars:
+            splunk_node_type: splunk_universal_forwarder
+        enterprise:
+          hosts:
+            index01:
+          children:
+            deployment_servers:
+              hosts:
+                deployment01:
+          vars:
+            splunk_node_type: splunk_enterprise

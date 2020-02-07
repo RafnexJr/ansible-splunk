@@ -1,0 +1,9 @@
+---
+
+- hosts: splunk_nodes
+  roles:
+    - node
+
+- hosts: deployment_servers
+  roles:
+    - deployment

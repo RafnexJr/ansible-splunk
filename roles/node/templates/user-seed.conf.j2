@@ -1,0 +1,5 @@
+{{ "Ansible Managed File" | comment }}
+
+[user_info]
+USERNAME = {{ splunk_administrator_user }}
+{% if splunk_secure_setup %}HASHED_PASSWORD = {{ splunk_administrator_hash }}{% else %}PASSWORD = {{ splunk_administrator_pass }}{% endif %}

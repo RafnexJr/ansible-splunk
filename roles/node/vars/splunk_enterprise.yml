@@ -1,0 +1,29 @@
+---
+
+### --------------------------------------------------------------------------
+### URL of the PRM Splunk Package
+
+splunk_rpm_download_url: https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=8.0.1&product=splunk&filename=splunk-8.0.1-6db836e2fb9e-linux-2.6-x86_64.rpm&wget=true
+
+### --------------------------------------------------------------------------
+### Filename of the PRM Splunk Package
+
+splunk_rpm_filename: splunk-8.0.1-6db836e2fb9e-linux-2.6-x86_64.rpm
+
+### --------------------------------------------------------------------------
+### Name of the Splunk Package once it is installed
+
+splunk_rpm_name: splunk
+
+### --------------------------------------------------------------------------
+### Default Directory where the splunk package gets installed
+
+splunk_home: /opt/splunk
+
+### --------------------------------------------------------------------------
+### Default Ports used by the Splunk Instance
+
+splunk_ports:
+  - 8089/tcp
+  - 8000/tcp
+  - 9997/tcp

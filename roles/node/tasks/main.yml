@@ -1,0 +1,59 @@
+---
+
+- name: Include Variables
+  include_vars:
+      file: "{{ splunk_node_type }}.yml"
+
+- name: Gather RPM Package Facts
+  package_facts:
+    manager: auto
+
+- name: Download Splunk Package
+  get_url:
+    url: "{{ splunk_rpm_download_url }}"
+    dest: "/tmp/{{ splunk_rpm_filename }}"
+  when: "'splunk_rpm_name' not in ansible_facts.packages"
+
+- name: Install Splunk Package
+  dnf:
+    name: "/tmp/{{ splunk_rpm_filename }}"
+    state: present
+  when: "'splunk_rpm_name' not in ansible_facts.packages"
+
+- name: Deploy the Splunk Administrator File
+  template:
+    src: user-seed.conf.j2
+    dest: "{{ splunk_home }}/etc/system/local/user-seed.conf"
+  register: splunk_inital_admin_creds_file
+
+- name: Deploy Deployment Client Configuration
+  template:
+    src: deploymentclient.conf.j2
+    dest: "{{ splunk_home }}/etc/system/local/deploymentclient.conf"
+  when: "'deployment_servers' not in group_names"
+
+- name: Start Splunk
+  command:
+    chdir: "{{ splunk_home }}/bin/"
+    cmd: ./splunk start --answer-yes --no-prompt --accept-license
+
+- name: Enable Firewall on Server
+  service:
+    name: firewalld
+    state: started
+    enabled: yes
+
+- name: Configure the Firewall for Splunk
+  firewalld:
+    port: "{{ item }}"
+    zone: public
+    permanent: yes
+    state: enabled
+  loop: "{{ splunk_ports }}"
+
+- name: Clean up Splunk Installation
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - "{{ splunk_home }}/etc/system/local/user-seed.conf"

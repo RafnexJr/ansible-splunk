@@ -1,0 +1,18 @@
+---
+
+### --------------------------------------------------------------------------
+### Determind if the deployment configuration shoudl be maintained in a git repo
+### yes -> use git repo specified in splunk_deployment_git_repo
+### no -> use local files
+
+splunk_deployment_use_git: no
+
+### --------------------------------------------------------------------------
+### URL to the Git Repository
+
+#splunk_deployment_git_repo: 
+
+### --------------------------------------------------------------------------
+### Configure Git Cron Job to clone and reload the deploment server
+
+splunk_deployment_git_cron: no
